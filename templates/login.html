@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Login</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="{{ url_for('static', filename='css/font-face.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/font-awesome-5/css/fontawesome-all.min.') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{{ url_for('static', filename='vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/wow/animate.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/slick/slick.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet" media="all">
+
+</head>
+{% block body %} 
+<body class="animsition">
+    <div class="page-wrapper">
+        <div class="page-content--bge5"  style="margin-top: 200px;">
+            <div class="container">
+                <div class="login-wrap">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="#">
+                                <img src="{{ url_for('static', filename='images/icon/logo.png') }}" alt="CoolAdmin">
+                            </a>
+                        </div>
+
+                        {% import "bootstrap/wtf.html" as wtf %}
+                        <div class="login-form">
+                            <form action="{{url_for('login')}}" method="POST">
+                                {{form.csrf_token}}
+                        
+                                <!-- <div class="input-group mb-3">
+                                  <input type="email" class="form-control" placeholder="Email">
+                                  <div class="input-group-append">
+                                    <div class="input-group-text">
+                                      <span class="fas fa-envelope"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                  <input type="password" class="form-control" placeholder="Password">
+                                  <div class="input-group-append">
+                                    <div class="input-group-text">
+                                      <span class="fas fa-lock"></span>
+                                    </div>
+                                  </div>
+                                </div> -->
+                        
+                                <div class="form-group">
+                                  {{form.hidden_tag()}}
+                                  {{wtf.form_field(form.username)}}
+                                  {{wtf.form_field(form.password)}}
+                                  {{wtf.form_field(form.level)}}
+                                  <!-- /.col -->
+                                  <div class="social-auth-links text-center mb-3">
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                  </div>
+                                  <!-- /.col -->
+                                </div>
+                              </form>
+                            <div class="register-link">
+                                <p>
+                                    Don't you have account?
+                                    <a href="#">Sign Up Here</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{{ url_for('static', filename='vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{{ url_for('static', filename='/bootstrap-4.1/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+    <!-- Vendor JS       -->
+    <script src="{{ url_for('static', filename='vendor/slick/slick.min.js') }}">
+    </script>
+    <script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/animsition/animsition.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+    </script>
+    <script src="{{ url_for('static', filename='vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/counter-up/jquery.counterup.min.js') }}">
+    </script>
+    <script src="{{ url_for('static', filename='vendor/circle-progress/circle-progress.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/chartjs/Chart.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='/select2/select2.min.js') }}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
+<!-- end document-->
+
+
+{% endblock %}

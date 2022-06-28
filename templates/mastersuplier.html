@@ -1,0 +1,192 @@
+{% include'header.html' %}
+
+{% block body %} 
+
+
+<div class="row" style="margin: 40px;">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35">data table</h3>
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                
+                <div class="rs-select2--light rs-select2--sm">
+                    
+                </div>
+                
+            </div>
+            <div class="table-data__tool-left">
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#mymodal">
+                    <i class="zmdi zmdi-plus"></i>add item</button>
+                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                    <select class="js-select2" name="type">
+                        <option selected="selected">Export</option>
+                        <option value="">Option 1</option>
+                        <option value="">Option 2</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-responsive-data2">
+            <h4 class="modal-title">Data Suplier</h4>
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Kode Barang</th>
+                        <th>Nama Suplier</th>
+                        <th>Harga</th>
+                        <th>Satuan</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for row in data %}
+                    <!-- Table -->
+                <tr class="spacer"></tr>
+                    <tr class="tr-shadow">
+                        <td>{{loop.index}}</td>
+                        <td>{{row.kode_barang}}</td>
+                        <td>{{row.namasuplier}}</td>
+                        <td>{{row.harga}}</td>
+                        <td>{{row.satuan}}</td>
+                        <td>
+                            <a href="/updatesuplier/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}" style="height:40px;  width:80px;">Edit</a>  
+        
+                            <a href="/deletesuplier/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete erwin ?')" style="height:40px;  width:80px;">Delete</a>  
+        
+                        </td>
+                        </tr>
+
+                    <!-- modul edit -->
+
+            <div id="modaledit{{ row.id }}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update information</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url_for('updatesuplier')}}" method="POST">
+  
+                                <div class="form-group">
+                                    <label>Kode Barang:</label>
+                                    <input type="hidden" name="id" value="{{ row.id }}">
+                                    <input type="text" class="form-control" name="kode_barang" value="{{ row.kode_barang }}" placeholder="Name">
+  
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama Suplier:</label>
+                                    <input type="text" class="form-control" name="namasuplier" value="{{ row.namasuplier }}" placeholder="Nama" required="1">
+    
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <label>Harga:</label>
+                                    <input type="number" class="form-control" name="harga" value="{{ row.harga }}" placeholder="Phone">
+        
+                                </div>
+                                <div class="form-group">
+                                  <label>Satuan:</label>
+                                  <input type="text" class="form-control" name="satuan" value="{{ row.satuan }}" placeholder="Satuan">
+      
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
+                                </div>
+  
+                            </form>
+                        </div>
+                    </div>
+                </div>  
+            </div>      
+                            {% endfor %}
+            </table>
+          </div>
+          <!-- /.card-body -->
+  
+           <!-- FORM ADD -->
+  
+           <div id="mymodal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+  
+                        <h4 class="modal-title">Add data</h4>
+                    </div>
+                    <div class="modal-body">
+  
+                        <form action="{{url_for('insertsuplier')}}" method="POST">
+  
+                            <div class="form-group">
+  
+                                <label>Kode barang:</label>
+                                <input type="text" class="form-control" name="kode_barang" required="1" placeholder="Kode barang">
+                            </div>
+  
+                            <div class="form-group">
+  
+                                <label>Nama:</label>
+                                <input type="text" class="form-control" name="namasuplier" required="1" placeholder="Nama">
+                            </div>
+
+                            
+  
+                            <div class="form-group">
+  
+                                <label>Harga:</label>
+                                <input type="number" class="form-control" name="harga" required="1" placeholder="Harga">
+                            </div>
+  
+                            <div class="form-group">
+  
+                              <label>Satuan:</label>
+                              <input type="text" class="form-control" name="satuan" required="1" placeholder="satuan">
+                          </div>
+  
+                            <div class="form-grup">
+  
+                                <button class="btn btn-primary" type="submit">Add data</button>
+                            </div>
+  
+                        </form>
+  
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+    
+  
+        <!-- FORM ADD -->
+  
+  
+        </div>
+  
+        <!-- End tables -->
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% include'footer.html' %}

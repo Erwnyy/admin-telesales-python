@@ -1,0 +1,189 @@
+{% include'header.html' %}
+
+{% block body %} 
+
+
+<div class="row" style="margin: 40px;">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35">data table</h3>
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+                
+                <div class="rs-select2--light rs-select2--sm">
+                    
+                </div>
+                
+            </div>
+            <div class="table-data__tool-left">
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#mymodal">
+                    <i class="zmdi zmdi-plus"></i>add item</button>
+                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                    <select class="js-select2" name="type">
+                        <option selected="selected">Export</option>
+                        <option value="">Option 1</option>
+                        <option value="">Option 2</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-responsive-data2">
+            <h4 class="modal-title">Data Karyawan</h4>
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Kode Karyawan</th>
+                        <th>Nama Karyawan</th>
+                        <th>Email</th>
+                        <th>Jabatan</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for row in data %}
+                    <!-- Table -->
+                <tr class="spacer"></tr>
+                    <tr class="tr-shadow">
+                        <td>{{loop.index}}</td>
+                        <td>{{row.kode_karyawan}}</td>
+                        <td>{{row.nama_karyawan}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.jabatan}}</td>
+                        <td>
+                            <a href="/updatekaryawan/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}" style="height:40px;  width:80px;">Edit</a>  
+        
+                            <a href="/deletekaryawan/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete erwin ?')" style="height:40px;  width:80px;">Delete</a>  
+        
+                        </td>
+                        </tr>
+
+                    <!-- modul edit -->
+
+            <div id="modaledit{{ row.id }}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update information</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{url_for('updatekaryawan')}}" method="POST">
+  
+                                <div class="form-group">
+                                    <label>Kode Karyawan:</label>
+                                    <input type="hidden" name="id" value="{{ row.id }}">
+                                    <input type="text" class="form-control" name="kode_karyawan" value="{{ row.kode_karyawan }}" placeholder="Kode Karyawan">
+  
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama Karyawan:</label>
+                                    <input type="text" class="form-control" name="nama_karyawan" value="{{ row.nama_karyawan }}" placeholder="Nama Karyawan" required="1">
+    
+                                </div>
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="text" class="form-control" name="email" value="{{ row.email }}" placeholder="Email">
+        
+                                </div>
+
+                                <div class="form-group">
+                                  <label>Jabatan:</label>
+                                  <input type="text" class="form-control" name="jabatan" value="{{ row.jabatan }}" placeholder="Jabatan">
+      
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
+                                </div>
+  
+                            </form>
+                        </div>
+                    </div>
+                </div>  
+            </div>      
+                            {% endfor %}
+            </table>
+          </div>
+          <!-- /.card-body -->
+  
+           <!-- FORM ADD -->
+  
+           <div id="mymodal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+  
+                        <h4 class="modal-title">Add data</h4>
+                    </div>
+                    <div class="modal-body">
+  
+                        <form action="{{url_for('insertkaryawan')}}" method="POST">
+  
+                            <div class="form-group">
+  
+                                <label>Kode Karyawan:</label>
+                                <input type="text" class="form-control" name="kode_karyawan" required="1" placeholder="Kode karyawan">
+                            </div>
+  
+                            <div class="form-group">
+  
+                                <label>Nama karyawan:</label>
+                                <input type="text" class="form-control" name="nama_karyawan" required="1" placeholder="Nama karyawan">
+                            </div>
+  
+                            <div class="form-group">
+  
+                                <label>Email:</label>
+                                <input type="text" class="form-control" name="email" required="1" placeholder="email">
+                            </div>
+  
+                            <div class="form-group">
+  
+                              <label>Jabatan:</label>
+                              <input type="text" class="form-control" name="jabatan" required="1" placeholder="jabatan">
+                          </div>
+  
+                            <div class="form-grup">
+  
+                                <button class="btn btn-primary" type="submit">Add data</button>
+                            </div>
+  
+                        </form>
+  
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+    
+  
+        <!-- FORM ADD -->
+  
+  
+        </div>
+  
+        <!-- End tables -->
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% include'footer.html' %}
